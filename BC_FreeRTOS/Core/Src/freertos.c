@@ -85,7 +85,7 @@ const osMessageQueueAttr_t dataQueue_attributes = {
         .name = "dataQueue"
 };
 
-//互斥�??????
+//互斥锁
 osMutexId_t dataMutexHandle;
 const osMutexAttr_t dataMutex_attributes = {
         .name = "UartMutex"
@@ -104,7 +104,7 @@ const osThreadAttr_t defaultTask_attributes = {
 /* USER CODE BEGIN FunctionPrototypes */
 void ReadDataTask(void *argument);
 void DataProcessTask(void *argument);
-void ReadData(queue_msg data,  MPU6050_t MPU6050);
+void ReadData(queue_msg *data,  MPU6050_t *MPU6050);
 void OledShowInit(void);
 /* USER CODE END FunctionPrototypes */
 void StartDefaultTask(void *argument);
@@ -166,13 +166,11 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
+    MPU6050_Init(&hi2c2);     // 初始化mpu6050
     TB6612Init();                   // 初始化电机驱动(pwm)
     EncoderInit();                  // 初始化编码器(encoder)
     ssd1306_init();                 // 初始化OLED
     OledShowInit();                 // 初始化OLED显示
-    osDelay(1000);
-    MPU6050_Init(&hi2c2);     // 初始化mpu6050
-    osDelay(1000);
     osThreadExit();
     for (;;){
         ;
@@ -195,7 +193,7 @@ void ReadDataTask(void *argument)
     };
     MPU6050_t MPU6050;
     for(;;){
-        ReadData(rdt_data, MPU6050);
+        ReadData(&rdt_data, &MPU6050);
 #if debug
         printf("angle_x :%f, gypo_x:%f\n", rdt_data.angle_x, rdt_data.gypo_x);
 #endif
@@ -233,12 +231,11 @@ void OledShowInit(void){
     ssd1306_update_screen();
 }
 
-void ReadData(queue_msg data,  MPU6050_t MPU6050){
-    MPU6050_Read_All(&hi2c2, &MPU6050);
-    data.angle_x = MPU6050.KalmanAngleX;
-    data.gypo_x = MPU6050.Gx;
-    data.encoder_left = GetTim2Encoder();
-    data.encoder_right = GetTim3Encoder();
+void ReadData(queue_msg *data,  MPU6050_t *MPU6050){
+    MPU6050_Read_All(&hi2c2, MPU6050);
+    data->angle_x = MPU6050->KalmanAngleX;
+    data->gypo_x = MPU6050->Gx;
+    data->encoder_left = GetTim2Encoder();
+    data->encoder_right = GetTim3Encoder();
 }
 /* USER CODE END Application */
-
