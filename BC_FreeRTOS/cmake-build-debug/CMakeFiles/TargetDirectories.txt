@@ -1,0 +1,3 @@
+C:/Users/A9201/Desktop/Project/BalanceCar/rpo/BC_FreeRTOS/cmake-build-debug/CMakeFiles/BC_FreeRTOS.elf.dir
+C:/Users/A9201/Desktop/Project/BalanceCar/rpo/BC_FreeRTOS/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/A9201/Desktop/Project/BalanceCar/rpo/BC_FreeRTOS/cmake-build-debug/CMakeFiles/rebuild_cache.dir

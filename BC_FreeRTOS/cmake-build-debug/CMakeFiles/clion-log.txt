@@ -1,0 +1,5 @@
+"E:\developmentEnvironment\CLion 2022.1.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=E:/mingw64/bin/mingw32-make.exe -DCMAKE_C_COMPILER=E:/developmentEnvironment/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe -DCMAKE_CXX_COMPILER=E:/developmentEnvironment/gcc-arm-none-eabi/bin/arm-none-eabi-g++.exe -G "CodeBlocks - MinGW Makefiles" -S C:\Users\A9201\Desktop\Project\BalanceCar\rpo\BC_FreeRTOS -B C:\Users\A9201\Desktop\Project\BalanceCar\rpo\BC_FreeRTOS\cmake-build-debug
+-- Minimal optimization, debug info included
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/A9201/Desktop/Project/BalanceCar/rpo/BC_FreeRTOS/cmake-build-debug
